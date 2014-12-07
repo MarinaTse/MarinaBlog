@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="true" name="mssmarttagspreventparsing" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <title>BlogAir Ваш персональный блог</title>
+    <link href="~/Content/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <!-- Wrap Div -->
+    <div id="wrap">
+        <!-- Header -->
+        <div id="hdr">
+            <!-- Top Menu -->
+            <div id="hdl">
+                <a href="#" class="hl">@Html.ActionLink("O проекте", "About", "Home")</a>
+                <a href="#" class="hl">Login</a>@*прописать страницу логина*@
+            </div>
+            <!-- Logo -->
+            <div id="logo">
+                <a href="@Url.Action("Index", "Home")"></a>
+            </div>
+
+        </div>
+        <!-- Container -->
+        <div id="cnt">
+            <!-- Left Container -->
+            <div id="lcnt">
+                <!-- Post -->
+                @RenderBody()
+                
+            </div>
+            <!-- Right Container -->
+            <div id="rcnt">
+                <!-- Popular Posts -->
+                <h2>Последние комментарии</h2>
+             @* @Html.Partial("RecentComments")*@
+            </div>
+            <br style="clear: both;" />
+        </div>
+    </div>
+    <!-- Footer -->
+    <div id="foo">
+        <!-- Footer Container -->
+        <div id="foo_d">
+
+        </div>
+    </div>
+</body>
+</html>

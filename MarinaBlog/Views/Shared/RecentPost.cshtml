@@ -1,0 +1,29 @@
+﻿@model MarinaBlog.Models.RecentDataModel
+
+@foreach (var SomeData in Model.LastDataPosts)
+{ 
+<div class="post">
+    <!-- Post Details -->
+    <div class="post_inf">
+        <span>@SomeData.Date.ToString("D")</span><br />
+        <span class="posn">@SomeData.Author</span><br />
+        <a class="posc" href="@Url.Action("Post","Home")"><span>@SomeData.CommentNumber</span></a>
+    </div>
+    <!-- Post Title - Permalink -->
+    <h1>
+        <a href="@Url.Action("Post", "Home")">@SomeData.ArticlePost</a>
+    </h1>
+    <!-- Post Content -->
+    <img src="~/images/post_pic3.jpg" alt="post_pic3" />
+    <p>@SomeData.Post</p>
+
+</div>
+    }
+
+
+
+        
+       
+    
+       
+   

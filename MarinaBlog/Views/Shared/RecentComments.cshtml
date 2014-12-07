@@ -1,0 +1,8 @@
+﻿@model MarinaBlog.Models.RecentDataModel
+@foreach(var Com in Model.LastDataComments){
+    
+<a class="pop_posts" href="#">
+    <h3><b>@Com.LastCommentAuthor</b></h3>
+    <i>@Com.LastCommentDate</i>
+    <p>@Com.LastCommentText</p></a>
+}

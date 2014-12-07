@@ -1,0 +1,48 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";  
+}
+
+@model MarinaBlog.Models.ArticleModel
+
+                <div class="post">
+                    <!-- Post Details -->
+                    <div class="post_inf">
+                        <span>@Model.ArticleDate.ToString("D")</span><br />
+                        <span class="posn">@Model.ArticleAuthor</span><br />
+                        <span class="posc">@Model.ArticleCommentsNumber</span>
+                    </div>
+                    <!-- Post Title - Permalink -->
+                    <h1>
+                        <a href="#">@Model.ArticleTitle</a>
+                    </h1>
+                    <!-- Post Content -->
+                    <img src="~/images/art_pic1.jpg" alt="art_pic1" />
+                    <p>@Model.ArticleText</p>
+                </div>
+               
+                <!-- Comments -->
+                <div class="comments">
+                    @foreach (var item in @Model.ArticleAllComments) 
+                    { 
+                                                <div class="comment">
+                                <div class="comm_hdr">
+                                    <p>@item.CommentAuthor<span> | @item.CommentDate.ToString("D") @item.CommentDate.ToString("HH:mm")</span></p>
+                                </div>
+                                <div class="avat">
+                                    <img src="~/images/avatar.jpg" alt="avatar" />
+                                    <img src="~/images/avatar_frame.png" alt="avatar_frame" class="avatar_frame" />
+                                </div>
+
+                                <p class="comm_txt">
+                                    @item.CommentText
+                                </p>
+                            </div>
+                    }
+                    <!-- Comment -->
+                    
+                </div>
+                <h2>Оставьте комментарий</h2>
+                <!-- Comment Form -->
+              @Html.Partial("Comment")
+            
+            
