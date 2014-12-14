@@ -137,6 +137,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Database\Article.cs" />
     <Compile Include="Database\Comments.cs" />
     <Compile Include="Database\Context.cs" />
@@ -144,12 +145,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AddCommentModel.cs" />
     <Compile Include="Models\RecentComments.cs" />
     <Compile Include="Models\ArticleModel.cs" />
     <Compile Include="Models\RecentPosts.cs" />
     <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\MainModel.cs" />
     <Compile Include="Models\RecentDataModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +174,7 @@
     </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -179,6 +183,10 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Registration\Registration.cshtml" />
+    <Content Include="Views\AddPost\AddPost.cshtml" />
+    <Content Include="Views\Shared\LogIn.cshtml" />
+    <Content Include="Views\Home\AddPost.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -212,9 +220,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\About.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\Comment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\RecentPost.cshtml" />

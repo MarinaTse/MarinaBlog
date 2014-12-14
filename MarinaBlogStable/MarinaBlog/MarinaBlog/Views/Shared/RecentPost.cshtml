@@ -1,6 +1,6 @@
-﻿@model MarinaBlog.Models.RecentDataModel
+﻿@model IEnumerable<MarinaBlog.Models.RecentPosts>
 
-@foreach (var SomeData in Model.LastDataPosts)
+@foreach (var SomeData in Model)
 { 
 <div class="post">
     <!-- Post Details -->
@@ -11,7 +11,7 @@
     </div>
     <!-- Post Title - Permalink -->
     <h1>
-        <a href="@Url.Action("Post", "Home")">@SomeData.ArticlePost</a>
+        <a href="@Url.Action("Post", "Home", new { ArticlePost = SomeData.ArticlePostMain })">@SomeData.ArticlePostMain</a>
     </h1>
     <!-- Post Content -->
     <img src="~/images/post_pic3.jpg" alt="post_pic3" />

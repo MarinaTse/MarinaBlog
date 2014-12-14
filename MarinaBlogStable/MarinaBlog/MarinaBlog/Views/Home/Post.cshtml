@@ -7,7 +7,7 @@
                 <div class="post">
                     <!-- Post Details -->
                     <div class="post_inf">
-                        <span>@Model.ArticleDate.ToString("D")</span><br />
+                        <span>@Model.ArticleDateTime.ToString("D")</span><br />
                         <span class="posn">@Model.ArticleAuthor</span><br />
                         <span class="posc">@Model.ArticleCommentsNumber</span>
                     </div>
@@ -22,11 +22,11 @@
                
                 <!-- Comments -->
                 <div class="comments">
-                    @foreach (var item in @Model.ArticleAllComments) 
+                    @foreach (var item in Model.ArticleAllComments) 
                     { 
                                                 <div class="comment">
                                 <div class="comm_hdr">
-                                    <p>@item.CommentAuthor<span> | @item.CommentDate.ToString("D") @item.CommentDate.ToString("HH:mm")</span></p>
+                                    <p>@item.CommentAuthor<span> | @item.CommentDateTime.ToString("D") @item.CommentDateTime.ToString("HH:mm")</span></p>
                                 </div>
                                 <div class="avat">
                                     <img src="~/images/avatar.jpg" alt="avatar" />
@@ -43,6 +43,17 @@
                 </div>
                 <h2>Оставьте комментарий</h2>
                 <!-- Comment Form -->
-              @Html.Partial("Comment")
+                   <form id="cmnt_frm" action="@Url.Action("AddComment", "Home", new { ArticlePost = Model.ArticleTitle})"method="post" >
+
+                    <p>
+                        
+                        @Html.TextAreaFor(m => m.NewComment.Comment, new {name="comment", cols="65", rows="10", tabindex="4", id="comment" })
+                    </p>
+                    <p>
+                        <input type="submit" name="submit" value="Отправить" tabindex="5" id="submit" />
+                        <input type="submit" name="submit" value="Отмена" tabindex="5" id="submit" />
+
+                    </p>
+                </form>
             
             

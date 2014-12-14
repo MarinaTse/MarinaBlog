@@ -21,6 +21,8 @@ namespace MarinaBlog.Database
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-        } 
+           // modelBuilder.Entity<Article>().HasRequired(mod => mod.User).WithMany(mod => mod.Articles).HasForeignKey(mod => mod.UserID);
+            //modelBuilder.Entity<Article>().HasMany(mod => mod.AllComments).WithRequired(mod => mod.Article).HasForeignKey(mod => mod.PostID);
+        }
     }
 }

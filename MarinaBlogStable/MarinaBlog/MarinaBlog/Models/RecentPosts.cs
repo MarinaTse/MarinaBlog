@@ -9,18 +9,24 @@ namespace MarinaBlog.Models
     {
         public RecentPosts()
         {
-            Author = "Manichka";
-            Date = DateTime.Now;
-            CommentNumber = 3;
-            Post = "Здесь краткое содержимое поста";
-            ArticlePost = "Мой пост";
+          
         }
-        public string Author { get; set; }
+
+        public RecentPosts(int UserID, DateTime ArticleDate, int CommentCount, string ArticlePreview, string ArticlePost) 
+        {
+               Author = UserID;
+               Date = ArticleDate;
+               CommentNumber = CommentCount;
+               Post = ArticlePreview;
+               ArticlePostMain = ArticlePost;
+        
+        }
+        public int Author { get; set; } // string 
         public DateTime Date { get; set; }
         public int CommentNumber { get; set;}
         public string Post { get; set; }
 
-        public string ArticlePost { get; set; }
+        public string ArticlePostMain { get; set; }
 
     }
 

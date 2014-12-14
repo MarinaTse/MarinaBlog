@@ -6,10 +6,23 @@ using System.Web;
 
 namespace MarinaBlog.Database
 {
+ 
     public class Comments
     {
-        public int UserID { get; set; }
+        public Comments()  
+        {
 
+        } 
+    
+public Comments(int UserID, int PostID, string CommentBody,DateTime CommentDate)
+{
+    this.UserID=UserID;
+    this.PostID=PostID;
+    this.CommentBody=CommentBody;
+    this.CommentDate=CommentDate;
+}     
+
+        public int UserID { get; set; }
         public int PostID { get; set; }
         [Key]
         public int CommentID { get; set; }
@@ -18,8 +31,7 @@ namespace MarinaBlog.Database
         public DateTime CommentDate { get; set; }
         public virtual Users User { get; set; }
 
-        public virtual Article Article { get; set; }
-
-        
+        //public virtual Article Article { get; set; }
+                
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MarinaBlog.Database;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -8,26 +9,28 @@ namespace MarinaBlog.Models
 {
     public class ArticleModel
     {
-        public ArticleModel() 
+        public ArticleModel()
         {
-            ArticleTitle = "Моя первая запись";
-            ArticleText = "Hello";
-            ArticleDate = DateTime.Now;
-            ArticleAuthor = "Маня";
-            ArticleCommentsNumber = 3;
-            ArticleAllComments = new Collection<CommentModel>( );
-            
-            ArticleAllComments.Add(new CommentModel());
-            ArticleAllComments.Add(new CommentModel());
-            ArticleAllComments.Add(new CommentModel());
+        }
 
-                }
+       public ArticleModel(Article article) 
+        { }
+       public ArticleModel(string ArticlePost, string ArticleBody, DateTime ArticleDate, int CommentCount, ICollection<CommentModel> ArticleComments)
+       {
+           ArticleTitle = ArticlePost;
+           ArticleText = ArticleBody;
+           ArticleDateTime = ArticleDate;
+           ArticleCommentsNumber = CommentCount;
+           ArticleAllComments = ArticleComments;
+       }
+
      public string ArticleText{ get; set; }
      public string ArticleTitle { get; set; }
-     public DateTime ArticleDate { get; set; }
+     public DateTime ArticleDateTime { get; set; }
      public string ArticleAuthor { get; set; }
      public int ArticleCommentsNumber { get; set; }
      public ICollection<CommentModel> ArticleAllComments { get; set; }
+     public AddCommentModel NewComment { get; set; }
     }
     
 }

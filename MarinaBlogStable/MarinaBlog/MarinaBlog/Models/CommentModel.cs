@@ -9,14 +9,18 @@ namespace MarinaBlog.Models
     {
         public CommentModel()
         {
-            CommentAuthor = "Сержик";
-            CommentText = "Прювет";
-            CommentDate = DateTime.Now;
-        
         }
+
+        public CommentModel(string UserName, string CommentBody, DateTime CommentDate) 
+        {
+            CommentAuthor = UserName;
+            CommentText = CommentBody;
+            CommentDateTime = CommentDate;
+        }
+
     public string CommentAuthor{ get; set; }
     public string CommentText{ get; set; }
-    public DateTime CommentDate { get; set;}
+    public DateTime CommentDateTime { get; set; }
     
     }
 }

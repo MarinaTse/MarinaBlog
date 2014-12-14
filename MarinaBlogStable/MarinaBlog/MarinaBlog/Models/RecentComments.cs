@@ -9,12 +9,14 @@ namespace MarinaBlog.Models
     {
         public RecentComments()
         {
-              LastCommentDate = DateTime.Now;
-              LastCommentURL = "http://google.com";
-              LastCommentText = "Hello";
-              LastCommentAuthor = "Predator";
         }
-   
+    public RecentComments(DateTime CommentDate, string CommentBody, string UserName )
+    {
+        LastCommentDate = CommentDate;
+        LastCommentText = CommentBody;
+        LastCommentAuthor = UserName;
+    
+    }
     public string LastCommentText {get; set; }
     public string LastCommentURL { get; set; }
     public DateTime LastCommentDate { get; set;}

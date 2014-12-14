@@ -11,16 +11,9 @@ namespace MarinaBlog.Models
         public RecentDataModel()
         {
             LastDataComments = new Collection<RecentComments>();
-                LastDataComments.Add(new RecentComments());
-                LastDataComments.Add(new RecentComments());
-                LastDataComments.Add(new RecentComments());
-                LastDataComments.Add(new RecentComments());
-                LastDataComments.Add(new RecentComments());
+                
             LastDataPosts = new Collection<RecentPosts>();
-                LastDataPosts.Add(new RecentPosts());
-                LastDataPosts.Add(new RecentPosts());
-                LastDataPosts.Add(new RecentPosts());
-                LastDataPosts.Add(new RecentPosts());
+                
         }
         public ICollection<RecentComments> LastDataComments { get; set; }
         public ICollection<RecentPosts> LastDataPosts  { get; set; }
