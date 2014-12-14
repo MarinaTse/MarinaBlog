@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "AddPost";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model MarinaBlog.Database.Article
+
+<form id="cmnt_frm" action="@Url.Action("AddPost", "Home")" method="post">
+    <h2>Создайте запись</h2></br>
+    @Html.TextAreaFor(m => m.ArticlePost)</br>
+    <i>Кратко расскажите о чем ваш ненужный пост</i></br>
+    @Html.TextAreaFor(m => m.ArticlePreview)</br>
+    <i>А вот здесь нужно написать пост целеком, потрудитесь :)</i></br>
+    @Html.TextAreaFor(m => m.ArticleBody)</br>
+    <input type="submit" name="submit" value="Отправить" tabindex="5" id="submit" />
+    <input type="submit" name="submit" value="Отмена" tabindex="5" id="submit" />
+</form>

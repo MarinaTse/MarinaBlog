@@ -137,7 +137,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Database\Article.cs" />
     <Compile Include="Database\Comments.cs" />
     <Compile Include="Database\Context.cs" />
@@ -183,10 +182,10 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Registration\Registration.cshtml" />
-    <Content Include="Views\AddPost\AddPost.cshtml" />
+    <Content Include="Views\Home\Registration.cshtml" />
     <Content Include="Views\Shared\LogIn.cshtml" />
     <Content Include="Views\Home\AddPost.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

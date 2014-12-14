@@ -46,6 +46,7 @@ namespace MarinaBlog.Controllers
                 return View(model);
             }
         }
+        [Authorize]
         [HttpPost]
         public ActionResult AddComment(ArticleModel model, string ArticlePost) 
         {
@@ -56,7 +57,7 @@ namespace MarinaBlog.Controllers
                     var post = db.Post.Where(p => p.ArticlePost == ArticlePost).FirstOrDefault();
                     if (post != null)
                     {
-                        var comment = new Comments() { UserID =1, PostID=1, CommentBody=model.NewComment.Comment, CommentDate=DateTime.Now };
+                        var comment = new Comments() { /*UserID =1, PostID=1,*/ CommentBody=model.NewComment.Comment, CommentDate=DateTime.Now };
                         db.Comment.Add(comment);
                         db.SaveChanges();
 
@@ -71,7 +72,6 @@ namespace MarinaBlog.Controllers
         public ActionResult AddPost() 
         {
             return View();
-        
         }
         [HttpPost]
 
@@ -90,6 +90,30 @@ namespace MarinaBlog.Controllers
         {
             return View();
         }
-        
+
+        public ActionResult Login() 
+        {
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Registration()
+        {
+            return View();
+
+        }
+        [HttpPost]
+        public ActionResult Registration(Users model)
+        {
+            using (var db = new Context())
+            {
+                
+                db.User.Add(model);
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+        }
+
     }
 }
