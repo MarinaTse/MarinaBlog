@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Web.Security;
 
 namespace MarinaBlog
 {
@@ -22,6 +23,28 @@ namespace MarinaBlog
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+
+        protected void Application_AuthenticateRequest(Object sender, EventArgs e)
+        {
+            if (HttpContext.Current.User != null)
+            {
+                if (HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    if (HttpContext.Current.User.Identity is FormsIdentity)
+                    {
+                        FormsIdentity id =
+                            (FormsIdentity)HttpContext.Current.User.Identity;
+
+                        var dao = new UserAccountDao();
+                        var user = dao.GetUserAccount(id.Name);
+                        if (user == null)
+                        {
+                            HttpContext.Current.User = null;
+                        }
+                     }
+                }
+            }
         }
     }
 }

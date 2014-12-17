@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace MarinaBlog.Controllers
 {
@@ -13,7 +14,7 @@ namespace MarinaBlog.Controllers
     {
         //
         // GET: /Home/
-
+    
         public ActionResult Index()
         {
             var model = new RecentDataModel();
@@ -29,11 +30,7 @@ namespace MarinaBlog.Controllers
 
         public ActionResult Post(string ArticlePost)
         {
-            if (ArticlePost == null)
-            {
-                ArticlePost = "Первый пост из базы";
-            }
-            using (var db = new Context())
+           using (var db = new Context())
             {
                 var post = db.Post.Where(p => p.ArticlePost == ArticlePost).FirstOrDefault();
                 var commentModel = new Collection<CommentModel>();
@@ -46,8 +43,9 @@ namespace MarinaBlog.Controllers
                 return View(model);
             }
         }
-        [Authorize]
+        
         [HttpPost]
+        [Authorize]
         public ActionResult AddComment(ArticleModel model, string ArticlePost) 
         {
             if (model.NewComment != null && ModelState.IsValid)
@@ -57,7 +55,7 @@ namespace MarinaBlog.Controllers
                     var post = db.Post.Where(p => p.ArticlePost == ArticlePost).FirstOrDefault();
                     if (post != null)
                     {
-                        var comment = new Comments() { /*UserID =1, PostID=1,*/ CommentBody=model.NewComment.Comment, CommentDate=DateTime.Now };
+                        var comment = new Comments() { CommentBody=model.NewComment.Comment, CommentDate=DateTime.Now };
                         db.Comment.Add(comment);
                         db.SaveChanges();
 
@@ -69,12 +67,14 @@ namespace MarinaBlog.Controllers
         }
 
         [HttpGet]
-        public ActionResult AddPost() 
+        [Authorize]
+        public ActionResult AddPost()
         {
             return View();
         }
-        [HttpPost]
 
+        [HttpPost]
+    
         public ActionResult AddPost(Article model) 
         {
             using (var db = new Context())
@@ -91,9 +91,32 @@ namespace MarinaBlog.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult Login() 
         {
+            return View();
+        }
+        [HttpPost]
+         public ActionResult Login(UserModel model)
+        {
+            using (var db = new Context()) 
+            { 
+            var person = db.User.Where(h => h.Email==model.Email && h.Password == model.Password);
+            if (person != null) 
+            {
+                var ticker = new FormsAuthenticationTicket(2, model.Email, DateTime.Now, DateTime.Now.AddMonths(1), true,
+                    String.Empty);
+                var encTicket = FormsAuthentication.Encrypt(ticker);
+
+                var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
+                cookie.Expires = DateTime.Now.AddMonths(1);
+
+                Response.Cookies.Add(cookie);
+
+            }
             return RedirectToAction("Index");
+
+            }
         }
 
         [HttpGet]
@@ -103,12 +126,12 @@ namespace MarinaBlog.Controllers
 
         }
         [HttpPost]
-        public ActionResult Registration(Users model)
+        public ActionResult Registration(UserModel model)
         {
             using (var db = new Context())
             {
-                
-                db.User.Add(model);
+                var user = new Users{UserName = model.Name , Email = model.Email, Password = model.Password};
+                db.User.Add(user);
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
